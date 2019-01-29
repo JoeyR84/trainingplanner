@@ -1,0 +1,20 @@
+import React from "react";
+import { NavLink } from "react-router-dom";
+
+const SignedInLinks = () => {
+  return (
+    <ul>
+      <li>
+        <NavLink to="/">home link</NavLink>
+      </li>{" "}
+      <li>
+        <NavLink to="/">New Routine</NavLink>
+      </li>
+      <li>
+        <NavLink to="/">Log Out</NavLink>
+      </li>
+    </ul>
+  );
+};
+
+export default SignedInLinks;
