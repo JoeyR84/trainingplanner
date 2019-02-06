@@ -1,20 +1,37 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+//redux
+import { connect } from 'react-redux';
+import { signOut } from '../../store/actions/authActions';
 
-const SignedInLinks = () => {
+// todo add the routing to function on succesful logout as a .then (if its a promise)
+const SignedInLinks = props => {
   return (
-    <ul>
-      <li>
-        <NavLink to="/">home link</NavLink>
-      </li>{" "}
-      <li>
-        <NavLink to="/">New Routine</NavLink>
-      </li>
-      <li>
-        <NavLink to="/">Log Out</NavLink>
-      </li>
-    </ul>
+    <Container>
+      <div>
+        <p onClick={props.signOut}>Log Out</p>
+      </div>
+      <div>
+        <NavLink to='/createroutine'>New Routine</NavLink>
+      </div>
+    </Container>
   );
 };
 
-export default SignedInLinks;
+const mapDispatchToProps = dispatch => {
+  return {
+    signOut: () => dispatch(signOut())
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SignedInLinks);
+
+const Container = styled.div`
+  display: flex;
+  width: 200px;
+  justify-content: space-between;
+`;

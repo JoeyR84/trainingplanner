@@ -1,21 +1,22 @@
-import React from "react";
+import React from 'react';
+import styled from 'styled-components';
 
-const Routine = props => {
-  const id = props.match.params.id;
-  console.log(props);
+const Routine = ({ routine }) => {
   return (
-    <div>
-      <h3>{props.title}</h3>
-      <div>
-        <p>{id}</p>
-        <ul>
-          <li>Some exercise</li>
-          <li>Some exercise</li>
-          <li>Some exercise</li>
-        </ul>
-      </div>
-    </div>
+    <Container>
+      <Title>{routine.title}</Title>
+      <TasksContainer>
+        {routine.tasks.map(task => {
+          return <Task key={task}>{task}</Task>;
+        })}
+      </TasksContainer>
+    </Container>
   );
 };
 
 export default Routine;
+
+const Container = styled.div``;
+const Title = styled.h3``;
+const TasksContainer = styled.div``;
+const Task = styled.p``;

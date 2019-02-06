@@ -1,17 +1,22 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 const SignedOutLinks = () => {
   return (
-    <ul>
-      <li>
-        <NavLink to="/">Sign Up</NavLink>
-      </li>
-      <li>
-        <NavLink to="/">Log In</NavLink>
-      </li>
-    </ul>
+    <Container>
+      <div>
+        <NavLink to='/signup'>Sign Up</NavLink>
+      </div>
+      <div>
+        <NavLink to='/signin'>Log In</NavLink>
+      </div>
+    </Container>
   );
 };
 
 export default SignedOutLinks;
+
+const Container = styled.div`
+  display: flex;
+`;
