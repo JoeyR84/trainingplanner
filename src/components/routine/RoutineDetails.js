@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 
 const Routine = props => {
+  if (!props.auth.uid) {
+    return <Redirect to='/signin' />;
+  }
   if (props.routine) {
     return (
       <Container>
@@ -31,7 +34,8 @@ const mapStateToProps = (state, ownProps) => {
   const routines = state.firestore.data.routines;
   const routine = routines ? routines[id] : null;
   return {
-    routine
+    routine,
+    auth: state.firebase.auth
   };
 };
 

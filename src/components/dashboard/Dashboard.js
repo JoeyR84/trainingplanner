@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 // components
 import RoutineList from '../routine/RoutineList';
 import Notifications from '../notifications/Notifications';
@@ -11,7 +12,8 @@ import { firestoreConnect } from 'react-redux-firebase';
 
 class Dashboard extends Component {
   render() {
-    const { routines } = this.props;
+    const { routines, auth } = this.props;
+    if (!auth.uid) return <Redirect to='/signin' />;
     return (
       <Container>
         <div>
@@ -27,7 +29,8 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => {
   return {
-    routines: state.firestore.ordered.routines
+    routines: state.firestore.ordered.routines,
+    auth: state.firebase.auth
   };
 };
 

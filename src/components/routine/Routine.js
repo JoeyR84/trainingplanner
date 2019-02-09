@@ -5,6 +5,9 @@ const Routine = ({ routine }) => {
   return (
     <Container>
       <Title>{routine.title}</Title>
+      <p>
+        Created by {routine.userFirstName} {routine.userLastName}
+      </p>
       <TasksContainer>
         {routine.tasks.map(task => {
           return <Task key={task}>{task}</Task>;

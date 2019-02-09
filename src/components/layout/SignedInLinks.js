@@ -15,6 +15,9 @@ const SignedInLinks = props => {
       <div>
         <NavLink to='/createroutine'>New Routine</NavLink>
       </div>
+      <div>
+        <h2>{props.profile.initials}</h2>
+      </div>
     </Container>
   );
 };
@@ -34,4 +37,5 @@ const Container = styled.div`
   display: flex;
   width: 200px;
   justify-content: space-between;
+  align-items: center;
 `;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 //redux stuff
 import { connect } from 'react-redux';
 // actions
@@ -28,6 +29,7 @@ class CreateRoutine extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.createRoutine(this.state.routine);
+    this.props.history.push('/');
   };
   handleAddTask = e => {
     e.preventDefault();
@@ -40,6 +42,10 @@ class CreateRoutine extends Component {
     });
   };
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) {
+      return <Redirect to='/signin' />;
+    }
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -77,6 +83,12 @@ class CreateRoutine extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     createRoutine: routine => dispatch(createRoutine(routine))
@@ -84,6 +96,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(CreateRoutine);
